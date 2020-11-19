@@ -28,7 +28,7 @@ export default class Hog extends Component {
       .toLowerCase()}.jpg`);
     if (this.state.shown) {
       return (
-        <div className="pigTile ui four wide column" onClick={this.handleClick}>
+        <div className="pigTile ui four wide column" onClick={this.handleClick} style={{height: "220px"}}>
           {this.state.clicked ? (
             <p>
               <h3>{this.props.hog.name}</h3>
@@ -38,7 +38,7 @@ export default class Hog extends Component {
               <br />
               {this.props.hog.greased ? "Greased" : "Not Greased"}
               <br />
-              Highest Medal Achieved: {this.props.hog['highest medal achieved']}
+              Highest Medal Achieved: {this.props.hog["highest medal achieved"]}
               <br />
               <button onClick={this.handleHide}>Hide</button>
             </p>
@@ -55,9 +55,11 @@ export default class Hog extends Component {
         </div>
       );
     } else {
-        return (
-            <button onClick={this.handleHide}>unHide {this.props.hog.name}</button>
-        )
+      return (
+        <div className="pigTile ui four wide column" onClick={this.handleClick} style={{height: "220px"}}>
+            <button onClick={this.handleHide}>Un-hide {this.props.hog.name}</button>
+        </div>
+      );
     }
   }
 }
