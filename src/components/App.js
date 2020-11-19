@@ -27,7 +27,7 @@ class App extends Component {
 
   nameSort = () => {
     this.setState({
-      hogs: [...this.state.hogs].sort(function (a, b) {
+      hogs: this.state.hogs.sort(function (a, b) {
         var nameA = a.name.toUpperCase();
         var nameB = b.name.toUpperCase();
         if (nameA < nameB) {
@@ -43,13 +43,14 @@ class App extends Component {
 
   weightSort = () => {
     this.setState({
-      hogs: [...this.state.hogs].sort(function (a, b) {
+      hogs: this.state.hogs.sort(function (a, b) {
         return a.weight - b.weight;
       }),
     });
   };
 
   renderHogs = (hogs) => {
+    console.table(hogs);
     return hogs.map((hog) => {
       return <Hog key={hog.name} hog={hog} />;
     });

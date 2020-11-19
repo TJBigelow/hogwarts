@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 
 export default class Hog extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       clicked: false,
-      name: props.hog.name,
-      specialty: props.hog.specialty,
-      weight: props.hog.weight,
-      greased: props.hog.greased,
-      medal: props.hog["highest medal achieved"],
+      shown: true,
     };
   }
 
@@ -19,29 +15,49 @@ export default class Hog extends Component {
     });
   };
 
+  handleHide = () => {
+    this.setState({
+      shown: !this.state.shown,
+    });
+  };
+
   render() {
-    let pigImage = require(`../hog-imgs/${this.state.name
+    let pigImage = require(`../hog-imgs/${this.props.hog.name
       .split(" ")
       .join("_")
       .toLowerCase()}.jpg`);
-
-    return (
-      <div className="pigTile ui four wide column" onClick={this.handleClick}>
-        {this.state.clicked ? (
-          <p>
-            <h3>{this.state.name}</h3>
-            Specialty: {this.state.specialty}<br />
-            Weight: {this.state.weight}<br />
-            {this.state.greased ? "Greased" : "Not Greased"}<br />
-            Highest Medal Achieved: {this.state.medal}<br />
-          </p>
-        ) : (
-          <div>
-            <h3>{this.state.name}</h3>
-            <img alt={this.state.name} src={pigImage} style={{ width: "150px" }} />
-          </div>
-        )}
-      </div>
-    );
+    if (this.state.shown) {
+      return (
+        <div className="pigTile ui four wide column" onClick={this.handleClick}>
+          {this.state.clicked ? (
+            <p>
+              <h3>{this.props.hog.name}</h3>
+              Specialty: {this.props.hog.specialty}
+              <br />
+              Weight: {this.props.hog.weight}
+              <br />
+              {this.props.hog.greased ? "Greased" : "Not Greased"}
+              <br />
+              Highest Medal Achieved: {this.props.hog['highest medal achieved']}
+              <br />
+              <button onClick={this.handleHide}>Hide</button>
+            </p>
+          ) : (
+            <div>
+              <h3>{this.props.hog.name}</h3>
+              <img
+                alt={this.props.hog.name}
+                src={pigImage}
+                style={{ width: "150px" }}
+              />
+            </div>
+          )}
+        </div>
+      );
+    } else {
+        return (
+            <button onClick={this.handleHide}>unHide {this.props.hog.name}</button>
+        )
+    }
   }
 }
