@@ -28,7 +28,7 @@ export default class Hog extends Component {
       .toLowerCase()}.jpg`);
     if (this.state.shown) {
       return (
-        <div className="pigTile ui four wide column" onClick={this.handleClick} style={{height: "220px"}}>
+        <div className="pigTile ui four wide column" onClick={this.handleClick} style={{height: "192px"}}>
           {this.state.clicked ? (
             <p>
               <h3>{this.props.hog.name}</h3>
@@ -48,7 +48,7 @@ export default class Hog extends Component {
               <img
                 alt={this.props.hog.name}
                 src={pigImage}
-                style={{ width: "150px" }}
+                style={{ maxWidth: "75%", maxHeight: "150px" }}
               />
             </div>
           )}
@@ -56,7 +56,7 @@ export default class Hog extends Component {
       );
     } else {
       return (
-        <div className="pigTile ui four wide column" onClick={this.handleClick} style={{height: "220px"}}>
+        <div className="pigTile ui four wide column" onClick={this.handleClick} style={{height: "192px"}}>
             <button onClick={this.handleHide}>Un-hide {this.props.hog.name}</button>
         </div>
       );

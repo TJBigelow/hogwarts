@@ -80,6 +80,7 @@ ul {
   float: left;
   margin: 2%;
   padding: 1%;
+  box-sizing: content-box;
   outline: #3B0B0B dotted thick;
   transition: 0.75s;
   opacity: 1;
